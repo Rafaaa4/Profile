@@ -30,7 +30,7 @@ export default function About() {
 
       <div className="relative border-l border-white/10 pl-8">
         {data.map((item, i) => (
-          <motion.div key={item.year} variants={fadeUp} className="relative mb-10 last:mb-0">
+          <motion.div key={`${item.year}-${item.title}`} variants={fadeUp} className="relative mb-10 last:mb-0">
             <span className="absolute -left-[calc(2rem+5px)] top-1.5 h-2.5 w-2.5 rounded-full bg-neon-blue shadow-glow" />
             <p className="font-mono text-xs text-neon-blue">{item.year}</p>
             <h3 className="mt-1 text-lg font-semibold text-white">{item.title}</h3>

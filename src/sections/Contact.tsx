@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { send } from '@emailjs/browser'
 import { motion } from 'framer-motion'
 import { FiGithub, FiGlobe, FiLinkedin, FiMail, FiMapPin, FiSend } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa6'
@@ -35,7 +36,7 @@ const CONTACT_LINKS: ContactLink[] = [
   { label: 'Location', value: data.location, href: undefined, icon: FiMapPin },
 ].filter((link): link is ContactLink => Boolean(link))
 
-type Status = 'idle' | 'sending' | 'sent'
+type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>('idle')
@@ -43,11 +44,37 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Frontend-only: this portfolio has no backend. Wire this handler up to
-    // a form service (Formspree, Getform, EmailJS) or a serverless function
-    // when you're ready to receive real messages.
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID?.trim() || ''
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID?.trim() || ''
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY?.trim() || ''
+
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus('error')
+      return
+    }
+
     setStatus('sending')
-    setTimeout(() => setStatus('sent'), 900)
+
+    send(
+      serviceId,
+      templateId,
+      {
+        from_name: form.name,
+        from_email: form.email,
+        message: form.message,
+        to_name: 'Rafaa',
+      },
+      publicKey
+    )
+      .then(() => {
+        setStatus('sent')
+        setForm({ name: '', email: '', message: '' })
+      })
+      .catch((err) => {
+        console.error('EmailJS error:', err)
+        setStatus('error')
+      })
   }
 
   return (
@@ -146,12 +173,14 @@ export default function Contact() {
               </>
             )}
             {status === 'sending' && 'Sending…'}
-            {status === 'sent' && 'Message queued ✓'}
+            {status === 'sent' && 'Message sent ✓'}
+            {status === 'error' && 'Failed to send'}
           </button>
-          {status === 'sent' && (
+          {(status === 'sent' || status === 'error') && (
             <p className="text-center text-xs text-slate-500">
-              This is a frontend-only demo form — connect it to Formspree, Getform, or a serverless
-              function to actually deliver messages.
+              {status === 'sent'
+                ? 'Your message has been sent successfully.'
+                : 'Something went wrong. Please try again or contact me directly by email.'}
             </p>
           )}
         </motion.form>
