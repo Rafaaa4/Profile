@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: #05070a;
+  background-image: radial-gradient(circle at 20% 20%, rgba(63, 198, 255, 0.08), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.08), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(34, 211, 166, 0.06), transparent 40%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgba(63, 198, 255, 0.3);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #05070a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3fc6ff, #8b5cf6);
+  border-radius: 999px;
+  border: 2px solid #05070a;
+}
+
+:focus-visible {
+  outline: 2px solid #3fc6ff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.font-mono-tight {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.01em;
+}
+
+/* Glassmorphism surface used across cards, nav, terminal chrome */
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Animated gradient border used on featured cards */
+.gradient-border {
+  position: relative;
+  border-radius: 1rem;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, #3fc6ff, #8b5cf6, #22d3a6, #3fc6ff);
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gradient-shift 6s ease infinite;
+  pointer-events: none;
+}
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Terminal window chrome */
+.terminal-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #3fc6ff, #8b5cf6 55%, #22d3a6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* subtle code-rain canvas sits behind hero, opacity kept low intentionally */
+.code-rain-mask {
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent 85%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent 85%);
+}
+
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #3fc6ff;
+}
+
+.card-hover-depth {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.card-hover-depth:hover {
+  transform: translateY(-6px);
+}
+
+/* Light theme overrides — same structure, inverted luminance, same accent hues */
+html.light body {
+  background-color: #f4f6f9;
+  background-image: radial-gradient(circle at 20% 20%, rgba(63, 198, 255, 0.1), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.08), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(34, 211, 166, 0.08), transparent 40%);
+  color: #0f172a;
+}
+html.light .glass {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.02));
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+html.light ::-webkit-scrollbar-track {
+  background: #f4f6f9;
+}
+html.light ::-webkit-scrollbar-thumb {
+  border-color: #f4f6f9;
+}
+html.light .text-slate-200,
+html.light .text-slate-300,
+html.light .text-slate-400 {
+  color: #334155;
+}
+html.light .bg-void {
+  background-color: #f4f6f9;
+}
+html.light .border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.1);
+}
+html.light .bg-white\/\[0\.03\] {
+  background-color: rgba(15, 23, 42, 0.03);
+}

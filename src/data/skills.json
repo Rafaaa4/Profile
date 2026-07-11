@@ -1,0 +1,55 @@
+[
+  {
+    "category": "Frontend",
+    "items": [
+      { "name": "React" },
+      { "name": "TypeScript" },
+      { "name": "TailwindCSS" },
+      { "name": "HTML" },
+      { "name": "CSS" },
+      { "name": "JavaScript" }
+    ]
+  },
+  {
+    "category": "Backend",
+    "items": [
+      { "name": "Node.js" },
+      { "name": "Express" },
+      { "name": "Spring Boot" }
+    ]
+  },
+  {
+    "category": "Mobile",
+    "items": [{ "name": "Flutter" }]
+  },
+  {
+    "category": "Operating Systems",
+    "items": [
+      { "name": "Ubuntu" },
+      { "name": "Linux"},
+      { "name": "Ubuntu Server" }
+    ]
+  },
+  {
+    "category": "Networking",
+    "items": [
+      { "name": "Cisco" },
+      { "name": "TCP/IP" },
+      { "name": "DNS" },
+      { "name": "DHCP" },
+      { "name": "Routing" },
+      { "name": "Switching" }
+    ]
+  },
+  {
+    "category": "Tools",
+    "items": [
+      { "name": "Git" },
+      { "name": "GitHub" },
+      { "name": "Docker" },
+      { "name": "VS Code" },
+      { "name": "Postman" },
+      { "name": "Figma" }
+    ]
+  }
+]

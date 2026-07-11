@@ -1,0 +1,108 @@
+[
+  {
+    "id": "shell-scripting",
+    "title": "Shell scripting",
+    "prompt": "~/scripts$ ./deploy.sh --env production",
+    "output": [
+      "> running pre-flight checks...",
+      "> pre-flight checks passed (4/4)",
+      "> syncing build artifacts to /var/www/app",
+      "> reloading nginx",
+      "deploy: done in 3.2s"
+    ],
+    "description": "Bash scripts for deployments, backups and log rotation — the kind that check their own exit codes before declaring victory."
+  },
+  {
+    "id": "package-management",
+    "title": "Package management",
+    "prompt": "~$ apt list --upgradable",
+    "output": [
+      "Listing... Done",
+      "nginx/jammy-updates 1.18.0-6ubuntu14.4 amd64",
+      "openssh-server/jammy-security 1:8.9p1-3ubuntu0.7 amd64",
+      "docker-ce/jammy 5:27.1.1-1~ubuntu.22.04~jammy amd64"
+    ],
+    "description": "Comfortable across apt, snap and manual .deb installs — and knowing when to pin a version instead of chasing latest."
+  },
+  {
+    "id": "system-administration",
+    "title": "System administration",
+    "prompt": "~$ systemctl status app.service",
+    "output": [
+      "● app.service - Node backend",
+      "   Loaded: loaded (/etc/systemd/system/app.service; enabled)",
+      "   Active: active (running) since Mon 09:12:04 UTC",
+      "   Memory: 84.2M"
+    ],
+    "description": "Systemd units, log inspection with journalctl, and enough monitoring to get paged before a customer notices."
+  },
+  {
+    "id": "permissions",
+    "title": "Permissions",
+    "prompt": "~$ ls -l /srv/app",
+    "output": [
+      "drwxr-x--- 4 deploy deploy 4096 Jun 2 08:14 releases",
+      "-rw-r----- 1 deploy deploy  512 Jun 2 08:14 .env",
+      "drwxr-xr-x 2 deploy www-data 4096 Jun 2 08:14 public"
+    ],
+    "description": "Least-privilege by default: dedicated service users, group-scoped access, and secrets that are never world-readable."
+  },
+  {
+    "id": "processes",
+    "title": "Processes",
+    "prompt": "~$ ps aux --sort=-%mem | head -5",
+    "output": [
+      "USER  PID  %MEM  COMMAND",
+      "node  1122  6.4  node dist/server.js",
+      "postgres 984  4.1  postgres: writer process",
+      "nginx 771  0.3  nginx: worker process"
+    ],
+    "description": "Reading process trees, killing what needs killing, and tracing runaway memory back to the code that caused it."
+  },
+  {
+    "id": "networking-commands",
+    "title": "Networking commands",
+    "prompt": "~$ ss -tulnp | grep LISTEN",
+    "output": [
+      "tcp  LISTEN 0.0.0.0:22   sshd",
+      "tcp  LISTEN 0.0.0.0:80   nginx",
+      "tcp  LISTEN 0.0.0.0:443  nginx",
+      "tcp  LISTEN 127.0.0.1:5432 postgres"
+    ],
+    "description": "dig, traceroute, ss and tcpdump for figuring out whether it's DNS, the firewall, or the application (it's usually DNS)."
+  },
+  {
+    "id": "ssh",
+    "title": "SSH",
+    "prompt": "~$ ssh -i ~/.ssh/deploy_ed25519 deploy@10.0.4.12",
+    "output": [
+      "Warning: Permanently added '10.0.4.12' (ED25519) to known hosts.",
+      "Welcome to Ubuntu 22.04.4 LTS",
+      "Last login: Sun Jun 1 22:03:11 2026 from 10.0.4.2"
+    ],
+    "description": "Key-based auth only, password login disabled, and a bastion host in front of anything that matters."
+  },
+  {
+    "id": "cron-jobs",
+    "title": "Cron jobs",
+    "prompt": "~$ crontab -l",
+    "output": [
+      "0 3 * * * /srv/scripts/backup-db.sh >> /var/log/backup.log 2>&1",
+      "*/15 * * * * /srv/scripts/healthcheck.sh",
+      "0 0 * * 0 /srv/scripts/rotate-logs.sh"
+    ],
+    "description": "Nightly backups, health checks every 15 minutes, and weekly log rotation — boring on purpose."
+  },
+  {
+    "id": "docker",
+    "title": "Docker",
+    "prompt": "~$ docker compose ps",
+    "output": [
+      "NAME       IMAGE           STATUS         PORTS",
+      "app-web    app:latest      Up 2 days      0.0.0.0:80->80/tcp",
+      "app-db     postgres:16     Up 2 days      5432/tcp",
+      "app-cache  redis:7-alpine  Up 2 days      6379/tcp"
+    ],
+    "description": "Multi-stage builds to keep images small, and Compose stacks for anything that needs more than one container."
+  }
+]

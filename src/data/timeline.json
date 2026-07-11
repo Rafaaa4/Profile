@@ -1,0 +1,37 @@
+[
+  {
+    "year": "2018",
+    "title": "First boot into Linux",
+    "description": "Installed Ubuntu 18.04 alongside Windows to fix a laptop that kept overheating on stock drivers. Broke the bootloader twice, learned GRUB the hard way, never went back."
+  },
+  {
+    "year": "2019",
+    "title": "Started a CS degree, fell into networking",
+    "description": "A Cisco-flavored networking module turned into a hobby. Built a home lab with second-hand switches to practice VLANs, DHCP scopes and static routing outside of class."
+  },
+  {
+    "year": "2023",
+    "title": "First production web app",
+    "description": "Shipped a small React + Express inventory tool for a family business. Learned more about deployment, environment variables and log rotation than the React part itself."
+  },
+  {
+    "year": "2022",
+    "title": "Went mobile with Flutter",
+    "description": "Rebuilt a web dashboard as a cross-platform Flutter app so field technicians could use it offline. First real exposure to state management at app scale."
+  },
+  {
+    "year": "2023",
+    "title": "Containers everywhere",
+    "description": "Migrated a fleet of manually configured services to Docker Compose, then to a small self-hosted Kubernetes cluster, mostly to see if I could keep it alive."
+  },
+  {
+    "year": "2024",
+    "title": "Security-first mindset",
+    "description": "Started treating hardening as a first step, not an afterthought: firewall rules before features, least privilege by default, and regular reads of CVE advisories for the stack I run. I also practice penetration testing through labs, document how I approach them, and keep some lab challenges on GitHub without full solutions, including Nyx and Vulnyx."
+  },
+  {
+    "year": "Now",
+    "title": "Full-stack, full-stack",
+    "description": "Building interfaces in React and Flutter, the infrastructure they run on, and the networks that connect them — and writing about it in the Linux Lab section of this site."
+  }
+]

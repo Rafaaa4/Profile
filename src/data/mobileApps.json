@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Dari TN App",
+    "tagline": "Flutter real-estate mobile app concept for Tunisia",
+    "platform": "Flutter · Android",
+    "screens": [
+      { "label": "Home", "accent": "blue" },
+      { "label": "Listings", "accent": "purple" },
+      { "label": "Details", "accent": "emerald" }
+    ],
+    "github": "https://github.com/Rafaaa4/dari_tn_app"
+  },
+  {
+    "name": "Smart Health",
+    "tagline": "Small app screens while learning Flutter and mobile UI",
+    "platform": "Flutter · Android",
+    "screens": [
+      { "label": "Widgets", "accent": "emerald" },
+      { "label": "Navigation", "accent": "blue" },
+      { "label": "Responsive UI", "accent": "purple" }
+    ],
+    "github": "https://github.com/Rafaaa4/smart-health"
+  }
+]
