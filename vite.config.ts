@@ -7,7 +7,7 @@ import react from '@vitejs/plugin-react'
 // "<username>.github.io" root repository.
 export default defineConfig({
   plugins: [react()],
-  base: '/devportfolio/',
+  base: '/Profile/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
