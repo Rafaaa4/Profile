@@ -40,8 +40,10 @@ Nothing here needs a CMS. Edit the JSON files in `src/data/`:
 | `network.json` | Network topology nodes/links/legend |
 | `mobileApps.json` | Mobile Apps phone mockups |
 
-Replace `public/resume-rafaa-selmi.pdf` with your real CV — the filename is
-referenced from `profile.json` (`resumeUrl`).
+The downloadable CV is `public/resume-rafaa-selmi.pdf`; its editable source is
+`public/resume.html`. Update the HTML, then print it to PDF using a browser's
+**Print / Save as PDF** option and replace the PDF. The download link is
+configured by `resumeUrl` in `src/data/profile.json`.
 
 ## Project structure
 

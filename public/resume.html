@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Rafaa Selmi — Front-End Developer specializing in React, TypeScript and responsive user interfaces."
+    />
+    <title>Rafaa Selmi | CV</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+        color: #172033;
+        background: #e9eef5;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 24px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        position: relative;
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        padding: 15mm 16mm;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 18px 60px rgb(23 32 51 / 14%);
+      }
+
+      .top-rule {
+        position: absolute;
+        inset: 0 0 auto;
+        height: 5px;
+        background: linear-gradient(90deg, #087e9b, #38b6c8 55%, #c6f2f1);
+      }
+
+      .header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 24px;
+        padding-bottom: 19px;
+        border-bottom: 1px solid #dce4ec;
+      }
+
+      .eyebrow,
+      .section-title,
+      .project-stack {
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: #087e9b;
+        font-size: 9px;
+        font-weight: 700;
+      }
+
+      h1 {
+        margin: 0;
+        color: #111a2c;
+        font-size: 34px;
+        font-weight: 750;
+        letter-spacing: -0.045em;
+        line-height: 1;
+      }
+
+      .role {
+        margin: 9px 0 0;
+        color: #435168;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .availability {
+        max-width: 172px;
+        padding: 9px 11px;
+        border: 1px solid #bce6e8;
+        border-radius: 7px;
+        background: #f0fbfb;
+        color: #126879;
+        font-size: 9px;
+        font-weight: 650;
+        line-height: 1.5;
+        text-align: right;
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(185px, 0.88fr);
+        gap: 27px;
+        padding-top: 19px;
+      }
+
+      section + section {
+        margin-top: 20px;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 10px;
+        color: #087e9b;
+        font-size: 9px;
+        font-weight: 750;
+      }
+
+      .section-title::after {
+        height: 1px;
+        flex: 1;
+        background: #dce4ec;
+        content: "";
+      }
+
+      .summary {
+        margin: 0;
+        color: #48556b;
+        font-size: 10.5px;
+        line-height: 1.65;
+      }
+
+      .project {
+        padding: 0 0 12px;
+      }
+
+      .project + .project {
+        padding-top: 11px;
+        border-top: 1px solid #edf1f5;
+      }
+
+      .project-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .project h3 {
+        margin: 0;
+        color: #172033;
+        font-size: 11px;
+        font-weight: 720;
+      }
+
+      .project-link {
+        color: #087e9b;
+        font-size: 8px;
+        font-weight: 650;
+        white-space: nowrap;
+      }
+
+      .project p {
+        margin: 4px 0 0;
+        color: #566278;
+        font-size: 9px;
+        line-height: 1.55;
+      }
+
+      .project-stack {
+        margin-top: 5px;
+        color: #78859a;
+        font-size: 7px;
+        font-weight: 650;
+        line-height: 1.5;
+      }
+
+      .contact-list,
+      .skill-list {
+        display: grid;
+        gap: 7px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .contact-list li {
+        color: #46536a;
+        font-size: 8.5px;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+      }
+
+      .contact-label {
+        display: block;
+        margin-bottom: 1px;
+        color: #8994a6;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 7px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .skill-group + .skill-group {
+        margin-top: 11px;
+      }
+
+      .skill-group h3 {
+        margin: 0 0 4px;
+        color: #29364c;
+        font-size: 9px;
+        font-weight: 700;
+      }
+
+      .skill-list {
+        display: block;
+        color: #5d6a7f;
+        font-size: 8.5px;
+        line-height: 1.65;
+      }
+
+      .footer {
+        position: absolute;
+        right: 16mm;
+        bottom: 10mm;
+        left: 16mm;
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        padding-top: 8px;
+        border-top: 1px solid #dce4ec;
+        color: #8591a3;
+        font-size: 7.5px;
+      }
+
+      .print-button {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 17px;
+        background: #087e9b;
+        color: #fff;
+        box-shadow: 0 8px 24px rgb(8 126 155 / 28%);
+        cursor: pointer;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      @media (max-width: 760px) {
+        body {
+          padding: 0;
+        }
+
+        .page {
+          width: 100%;
+          min-height: 100vh;
+          padding: 30px 24px 68px;
+        }
+
+        .header {
+          flex-direction: column;
+          gap: 14px;
+        }
+
+        .availability {
+          max-width: none;
+          text-align: left;
+        }
+
+        .content {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .footer {
+          position: static;
+          margin-top: 22px;
+        }
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      @media print {
+        :root {
+          background: #fff;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+
+        body {
+          padding: 0;
+        }
+
+        .page {
+          width: 210mm;
+          height: 297mm;
+          margin: 0;
+          overflow: hidden;
+          box-shadow: none;
+        }
+
+        .print-button {
+          display: none;
+        }
+
+        a {
+          text-decoration: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="top-rule"></div>
+      <header class="header">
+        <div>
+          <p class="eyebrow">Curriculum Vitae</p>
+          <h1>Rafaa Selmi</h1>
+          <p class="role">Front-End Developer · React · TypeScript · Flutter</p>
+        </div>
+        <div class="availability">Open to front-end, React and Flutter opportunities</div>
+      </header>
+
+      <div class="content">
+        <div>
+          <section>
+            <h2 class="section-title">Profile</h2>
+            <p class="summary">
+              Front-end developer based in Kairouan, Tunisia, focused on building responsive web
+              interfaces with React, JavaScript and TypeScript. Interested in thoughtful UI/UX,
+              accessible experiences and mobile development with Flutter. I enjoy taking projects
+              from a clear interface concept to a working, maintainable implementation.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="section-title">Selected Projects</h2>
+            <article class="project">
+              <div class="project-heading">
+                <h3>Fifty Store</h3>
+                <a class="project-link" href="https://github.com/Rafaaa4/fifty_store">View project ↗</a>
+              </div>
+              <p>
+                Responsive storefront focused on product browsing, reusable product UI and a clear
+                shopping experience across screen sizes.
+              </p>
+              <div class="project-stack">React · TypeScript · E-commerce · Responsive UI</div>
+            </article>
+            <article class="project">
+              <div class="project-heading">
+                <h3>GitHub Search</h3>
+                <a class="project-link" href="https://github.com/Rafaaa4/Github-Search">View project ↗</a>
+              </div>
+              <p>
+                JavaScript search interface that requests GitHub profile data and presents useful
+                results with clear loading and empty states.
+              </p>
+              <div class="project-stack">JavaScript · GitHub API · Search UI</div>
+            </article>
+            <article class="project">
+              <div class="project-heading">
+                <h3>Dari TN App</h3>
+                <a class="project-link" href="https://github.com/Rafaaa4/dari_tn_app">View project ↗</a>
+              </div>
+              <p>
+                Flutter mobile app concept for browsing real-estate listings, with screen-based
+                navigation and a mobile-first interface.
+              </p>
+              <div class="project-stack">Flutter · Dart · Mobile UI</div>
+            </article>
+            <article class="project">
+              <div class="project-heading">
+                <h3>Smart Health</h3>
+                <a class="project-link" href="https://github.com/Rafaaa4/smart-health">View project ↗</a>
+              </div>
+              <p>
+                Health-focused Flutter app practice project exploring reusable widgets, screen
+                composition and simple navigation.
+              </p>
+              <div class="project-stack">Flutter · Dart · Android</div>
+            </article>
+          </section>
+        </div>
+
+        <aside>
+          <section>
+            <h2 class="section-title">Contact</h2>
+            <ul class="contact-list">
+              <li>
+                <span class="contact-label">Location</span>
+                Kairouan, Tunisia
+              </li>
+              <li>
+                <span class="contact-label">Email</span>
+                <a href="mailto:rafaaselmi6@gmail.com">rafaaselmi6@gmail.com</a>
+              </li>
+              <li>
+                <span class="contact-label">Phone / WhatsApp</span>
+                <a href="tel:+21652490771">+216 52 490 771</a>
+              </li>
+              <li>
+                <span class="contact-label">GitHub</span>
+                <a href="https://github.com/Rafaaa4">github.com/Rafaaa4</a>
+              </li>
+              <li>
+                <span class="contact-label">LinkedIn</span>
+                <a href="https://www.linkedin.com/in/rafaa-selmi-43a864220/">Rafaa Selmi</a>
+              </li>
+              <li>
+                <span class="contact-label">Behance</span>
+                <a href="https://www.behance.net/rafaaselmi1">behance.net/rafaaselmi1</a>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skill-group">
+              <h3>Front-End</h3>
+              <ul class="skill-list">
+                <li>React, TypeScript, JavaScript</li>
+                <li>HTML, CSS, Tailwind CSS</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Mobile</h3>
+              <ul class="skill-list">
+                <li>Flutter, Dart</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Back-End</h3>
+              <ul class="skill-list">
+                <li>Node.js, Express, Spring Boot</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Systems &amp; Networking</h3>
+              <ul class="skill-list">
+                <li>Linux, Ubuntu, Ubuntu Server</li>
+                <li>Cisco, TCP/IP, DNS, DHCP</li>
+                <li>Routing, switching</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Tools</h3>
+              <ul class="skill-list">
+                <li>Git, GitHub, Docker</li>
+                <li>VS Code, Postman, Figma</li>
+              </ul>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <footer class="footer">
+        <span>Rafaa Selmi · Front-End Developer</span>
+        <a href="https://github.com/Rafaaa4">github.com/Rafaaa4</a>
+      </footer>
+    </main>
+    <button class="print-button" type="button" onclick="window.print()">Print / Save as PDF</button>
+  </body>
+</html>
