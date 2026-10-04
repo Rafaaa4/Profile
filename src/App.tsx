@@ -57,7 +57,7 @@ export default function App() {
     const handler = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault()
-        setPaletteOpen((o) => !o)
+        setPaletteOpen(true)
       }
     }
     window.addEventListener('keydown', handler)

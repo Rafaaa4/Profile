@@ -1,12 +1,16 @@
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FiArrowLeft, FiArrowUpRight, FiGithub } from 'react-icons/fi'
 import projects from '@/data/projects.json'
-import type { Project } from '@/types'
+import profile from '@/data/profile.json'
+import type { Profile, Project } from '@/types'
 import { fadeUp, staggerContainer } from '@/animations/variants'
+import { fetchGitHubProjectBySlug } from '@/lib/github-projects'
 import NotFound from './NotFound'
 
 const data = projects as Project[]
+const profileData = profile as Profile
 
 const CATEGORY_GRADIENT: Record<Project['category'], string> = {
   Web: 'from-neon-blue/25 via-transparent to-transparent',
@@ -17,7 +21,47 @@ const CATEGORY_GRADIENT: Record<Project['category'], string> = {
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>()
-  const project = data.find((p) => p.slug === slug)
+  const [project, setProject] = useState<Project | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    let isMounted = true
+
+    async function load() {
+      const staticMatch = data.find((p) => p.slug === slug)
+      if (staticMatch) {
+        setProject(staticMatch)
+        setLoading(false)
+        return
+      }
+
+      try {
+        const liveProject = await fetchGitHubProjectBySlug(profileData.githubUsername, slug)
+        if (isMounted) {
+          setProject(liveProject)
+          setLoading(false)
+        }
+      } catch {
+        if (isMounted) {
+          setProject(null)
+          setLoading(false)
+        }
+      }
+    }
+
+    load()
+    return () => {
+      isMounted = false
+    }
+  }, [slug])
+
+  if (loading) {
+    return (
+      <div className="mx-auto max-w-4xl px-6 pb-24 pt-32 text-slate-400">
+        Loading project details…
+      </div>
+    )
+  }
 
   if (!project) return <NotFound />
 
@@ -78,16 +122,18 @@ export default function ProjectDetail() {
           ))}
         </motion.div>
 
-        <motion.div variants={fadeUp} className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {project.images.map((img) => (
-            <div
-              key={img}
-              className={`gradient-border relative flex h-36 items-end overflow-hidden rounded-xl bg-gradient-to-br p-3 ${CATEGORY_GRADIENT[project.category]} bg-surface`}
-            >
-              <span className="font-mono text-xs text-slate-300">{img}</span>
-            </div>
-          ))}
-        </motion.div>
+        {project.images.length > 0 && (
+          <motion.div variants={fadeUp} className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {project.images.map((img) => (
+              <div
+                key={img}
+                className={`gradient-border relative flex h-36 items-end overflow-hidden rounded-xl bg-gradient-to-br p-3 ${CATEGORY_GRADIENT[project.category]} bg-surface`}
+              >
+                <span className="font-mono text-xs text-slate-300">{img}</span>
+              </div>
+            ))}
+          </motion.div>
+        )}
 
         <div className="mt-12 space-y-10">
           <motion.section variants={fadeUp}>

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   FiCpu,
@@ -33,10 +33,11 @@ interface Props {
 export default function CommandPalette({ open, onClose }: Props) {
   const [query, setQuery] = useState('')
   const navigate = useNavigate()
+  const location = useLocation()
 
   const goTo = (hash: string) => {
     onClose()
-    if (window.location.pathname !== '/') {
+    if (location.pathname !== '/') {
       navigate('/' + hash)
       return
     }

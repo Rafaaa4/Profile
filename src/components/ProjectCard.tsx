@@ -12,30 +12,57 @@ const CATEGORY_ACCENT: Record<Project['category'], string> = {
 }
 
 export default function ProjectCard({ project }: { project: Project }) {
+  const hasDetailPage = Boolean(project.images.length || project.challenges || project.solution)
+
   return (
     <motion.article variants={fadeUp} className="group relative">
       <div className="gradient-border card-hover-depth glass relative flex h-full flex-col overflow-hidden rounded-2xl">
-        <Link to={`/projects/${project.slug}`} className="block">
-          <div
-            className={`relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br ${
-              CATEGORY_ACCENT[project.category]
-            } bg-surface`}
-          >
-            <span className="font-mono text-4xl font-bold text-white/10 transition-transform duration-500 group-hover:scale-110">
-              {project.title.slice(0, 2).toUpperCase()}
-            </span>
-            <span className="absolute left-3 top-3 rounded-full border border-white/10 bg-black/30 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-slate-300">
-              {project.category}
-            </span>
-          </div>
-        </Link>
+        {hasDetailPage ? (
+          <Link to={`/projects/${project.slug}`} className="block">
+            <div
+              className={`relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br ${
+                CATEGORY_ACCENT[project.category]
+              } bg-surface`}
+            >
+              <span className="font-mono text-4xl font-bold text-white/10 transition-transform duration-500 group-hover:scale-110">
+                {project.title.slice(0, 2).toUpperCase()}
+              </span>
+              <span className="absolute left-3 top-3 rounded-full border border-white/10 bg-black/30 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-slate-300">
+                {project.category}
+              </span>
+            </div>
+          </Link>
+        ) : (
+          <a href={project.github} target="_blank" rel="noreferrer" className="block">
+            <div
+              className={`relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br ${
+                CATEGORY_ACCENT[project.category]
+              } bg-surface`}
+            >
+              <span className="font-mono text-4xl font-bold text-white/10 transition-transform duration-500 group-hover:scale-110">
+                {project.title.slice(0, 2).toUpperCase()}
+              </span>
+              <span className="absolute left-3 top-3 rounded-full border border-white/10 bg-black/30 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-slate-300">
+                {project.category}
+              </span>
+            </div>
+          </a>
+        )}
 
         <div className="flex flex-1 flex-col gap-3 p-5">
-          <Link to={`/projects/${project.slug}`}>
-            <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-neon-blue">
-              {project.title}
-            </h3>
-          </Link>
+          {hasDetailPage ? (
+            <Link to={`/projects/${project.slug}`}>
+              <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-neon-blue">
+                {project.title}
+              </h3>
+            </Link>
+          ) : (
+            <a href={project.github} target="_blank" rel="noreferrer">
+              <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-neon-blue">
+                {project.title}
+              </h3>
+            </a>
+          )}
           <p className="flex-1 text-sm leading-relaxed text-slate-400">{project.summary}</p>
 
           <div className="flex flex-wrap gap-1.5">
@@ -68,12 +95,23 @@ export default function ProjectCard({ project }: { project: Project }) {
                 <FiArrowUpRight /> Live demo
               </a>
             )}
-            <Link
-              to={`/projects/${project.slug}`}
-              className="ml-auto text-xs font-medium text-neon-purple transition-colors hover:text-white"
-            >
-              Details →
-            </Link>
+            {hasDetailPage ? (
+              <Link
+                to={`/projects/${project.slug}`}
+                className="ml-auto text-xs font-medium text-neon-purple transition-colors hover:text-white"
+              >
+                Details →
+              </Link>
+            ) : (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                className="ml-auto text-xs font-medium text-neon-purple transition-colors hover:text-white"
+              >
+                Open repo →
+              </a>
+            )}
           </div>
         </div>
       </div>

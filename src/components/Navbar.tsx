@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { FiCommand, FiMenu, FiX } from 'react-icons/fi'
+import { FiCommand, FiMenu, FiSearch, FiX } from 'react-icons/fi'
 
 const NAV_LINKS = [
   { label: 'About', hash: '#about' },
@@ -73,11 +73,16 @@ export default function Navbar({ onOpenPalette }: Props) {
 
         <div className="flex items-center gap-2">
           <button
-            onClick={onOpenPalette}
-            className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-slate-400 transition-colors hover:border-neon-blue/40 hover:text-white sm:flex"
+            onClick={() => {
+              setOpen(false)
+              onOpenPalette()
+            }}
+            aria-label="Search navigation"
+            className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-slate-400 transition-colors hover:border-neon-blue/40 hover:text-white"
           >
-            <FiCommand />
-            <span>{isMac ? '⌘' : 'Ctrl'} K</span>
+            <FiSearch className="sm:hidden" />
+            <FiCommand className="hidden sm:block" />
+            <span className="hidden sm:inline">{isMac ? '⌘' : 'Ctrl'} K</span>
           </button>
           <button
             className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-slate-300 lg:hidden"
@@ -98,6 +103,20 @@ export default function Navbar({ onOpenPalette }: Props) {
             className="overflow-hidden glass lg:hidden"
           >
             <ul className="flex flex-col gap-1 px-6 py-4">
+              <li>
+                <button
+                  onClick={() => {
+                    setOpen(false)
+                    onOpenPalette()
+                  }}
+                  className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-left text-sm text-neon-blue hover:bg-white/5"
+                >
+                  <FiSearch /> Search sections and links
+                  <span className="ml-auto font-mono text-xs text-slate-500">
+                    {isMac ? '⌘' : 'Ctrl'} K
+                  </span>
+                </button>
+              </li>
               {NAV_LINKS.map((link) => (
                 <li key={link.hash}>
                   <button
