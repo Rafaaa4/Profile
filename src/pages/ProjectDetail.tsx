@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FiArrowLeft, FiArrowUpRight, FiGithub } from 'react-icons/fi'
 import projects from '@/data/projects.json'
@@ -21,6 +21,8 @@ const CATEGORY_GRADIENT: Record<Project['category'], string> = {
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>()
+  const location = useLocation()
+  const routedProject = (location.state as { project?: Project } | null)?.project
   const [project, setProject] = useState<Project | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -29,8 +31,10 @@ export default function ProjectDetail() {
 
     async function load() {
       const staticMatch = data.find((p) => p.slug === slug)
-      if (staticMatch) {
-        setProject(staticMatch)
+      const matchingRoutedProject = routedProject?.slug === slug ? routedProject : null
+      const localProject = staticMatch ?? matchingRoutedProject
+      if (localProject) {
+        setProject(localProject)
         setLoading(false)
         return
       }
@@ -53,7 +57,7 @@ export default function ProjectDetail() {
     return () => {
       isMounted = false
     }
-  }, [slug])
+  }, [routedProject, slug])
 
   if (loading) {
     return (

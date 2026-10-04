@@ -43,12 +43,13 @@ export default function Hero() {
             >
               <FiDownload /> Download CV
             </a>
-            <a
-              href="#projects"
+            <button
+              type="button"
+              onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
               className="flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-slate-300 transition-colors hover:text-white"
             >
               View Projects <FiArrowRight />
-            </a>
+            </button>
           </motion.div>
 
           <motion.p variants={fadeUp} className="mt-8 font-mono text-xs text-slate-600">

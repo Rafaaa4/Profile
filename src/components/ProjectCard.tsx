@@ -18,7 +18,7 @@ export default function ProjectCard({ project }: { project: Project }) {
     <motion.article variants={fadeUp} className="group relative">
       <div className="gradient-border card-hover-depth glass relative flex h-full flex-col overflow-hidden rounded-2xl">
         {hasDetailPage ? (
-          <Link to={`/projects/${project.slug}`} className="block">
+          <Link to={`/projects/${project.slug}`} state={{ project }} className="block">
             <div
               className={`relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br ${
                 CATEGORY_ACCENT[project.category]
@@ -51,7 +51,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 
         <div className="flex flex-1 flex-col gap-3 p-5">
           {hasDetailPage ? (
-            <Link to={`/projects/${project.slug}`}>
+            <Link to={`/projects/${project.slug}`} state={{ project }}>
               <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-neon-blue">
                 {project.title}
               </h3>
@@ -98,6 +98,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             {hasDetailPage ? (
               <Link
                 to={`/projects/${project.slug}`}
+                state={{ project }}
                 className="ml-auto text-xs font-medium text-neon-purple transition-colors hover:text-white"
               >
                 Details →
